@@ -38,29 +38,29 @@ window.addEventListener("DOMContentLoaded", () => {
   function nowClock() {
 
     // 2-1-1. 2자리수 만들기 
-    let hours = String(new Date().getHours()).padStart(2,"0")
-    let minutes = String(new Date().getMinutes()).padStart(2,"0")
-    let seconds = String(new Date().getSeconds()).padStart(2,"0")
+    // let hours = String(new Date().getHours()).padStart(2,"0")
+    // let minutes = String(new Date().getMinutes()).padStart(2,"0")
+    // let seconds = String(new Date().getSeconds()).padStart(2,"0")
 
     // 2-1-2. 2자리수 만들기
-    // const addZero = function(num){
-    //   return num<10?"0"+num:num;
-    // }
+    const addZero = function(num){
+      return num<10? "0"+num : num;
+    }
 
-    // let hours = new Date().getHours();
-    // let minutes = addZero(new Date().getMinutes());
-    // let seconds = addZero(new Date().getSeconds());
+    let hours = new Date().getHours();
+    let minutes = addZero(new Date().getMinutes());
+    let seconds = addZero(new Date().getSeconds());
 
     // 2-2. 오전/오후 업데이트
     let changenoon = "AM"
     if(hours>11){
-      // hours = addZero(new Date().getHours()-12)
+      hours = addZero(new Date().getHours()-12)
       changenoon = "PM"
     }
 
     // 최종 출력!
     noon.innerText = changenoon;
-    clock.innerText = `${hours}:${minutes}:${seconds}`;
+    clock.innerText = `${addZero(hours)}:${minutes}:${seconds}`;
   }
 
   nowClock();
