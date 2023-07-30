@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded",()=>{
   const inputText = document.querySelector('.input-text');
   const list = document.querySelector('.list');
   const addBtn = document.querySelector('.add-btn');
-      
+
   addBtn.addEventListener('click',function(){    
     // item
     const item = document.createElement('span');
@@ -36,6 +36,4 @@ window.addEventListener("DOMContentLoaded",()=>{
     li.appendChild(manage);
     list.appendChild(li);
   })
-
-
 })
