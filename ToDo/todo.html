@@ -1,13 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="todo.css">
-  <script src="todo.js"></script>
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="todo.css" />
+    <script src="todo.js"></script>
+    <title>Todo List</title>
+    <script
+      src="https://kit.fontawesome.com/77fc3db515.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Todo List</h1>
+      </header>
+      <section>
+        <div class="input-container">
+          <input type="text" class="input-text" />
+          <button class="add-btn">+</button>
+        </div>
+        <div class="list-container">
+          <ul class="list">
+            <li>
+              <span class="like">
+                <i class="fa-regular fa-heart heart"></i>
+                <!-- <i class="fa-solid fa-heart"></i> -->
+              </span>
+              <span class="item">js todo</span>
+              <span class="manage">
+                <i class="fa-solid fa-check check"></i>
+                <i class="fa-solid fa-xmark clear"></i>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </body>
 </html>
