@@ -5,13 +5,13 @@ window.addEventListener("DOMContentLoaded",()=>{
   // 입력창, ul, li, button
   const inputText = document.querySelector('.input-text');
   const list = document.querySelector('.list');
-  const addBtn = document.querySelector('.add-btn');    
-  addBtn.addEventListener('click',function(){
-    
+  const addBtn = document.querySelector('.add-btn');
+      
+  addBtn.addEventListener('click',function(){    
     // item
     const item = document.createElement('span');
     item.innerText = inputText.value;
-    item.classList.add('item')
+    item.classList.add('item');
 
     // like
     const like =  document.createElement('span');
@@ -31,10 +31,10 @@ window.addEventListener("DOMContentLoaded",()=>{
     manage.appendChild(clearIcon);
     
     const li = document.createElement('li');
-    li.appendChild(like)
-    li.appendChild(item)
-    li.appendChild(manage)
-    list.appendChild(li)
+    li.appendChild(like);
+    li.appendChild(item);
+    li.appendChild(manage);
+    list.appendChild(li);
   })
 
 
