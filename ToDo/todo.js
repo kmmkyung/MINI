@@ -36,4 +36,6 @@ window.addEventListener("DOMContentLoaded",()=>{
     li.appendChild(manage)
     list.appendChild(li)
   })
+
+
 })
