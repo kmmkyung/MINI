@@ -122,8 +122,9 @@ i{
 
 .done .item {
   text-decoration: line-through;
+  color: #bbb;
 }
 
 .done .check{
-  visibility: hidden;
+  color: rgba(0, 168, 64, 0.3);
 }
