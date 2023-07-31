@@ -51,7 +51,7 @@ header{
   bottom: -0.5px;
   width: 0%;
   height: 2px;
-  transition: all 1s ease-in-out;
+  transition: all .6s ease-in-out;
 }
 
 .input-container:focus-within::before{
@@ -110,6 +110,7 @@ header{
 
 i{
   padding: 10px;
+  cursor: pointer;
 }
 
 .like i, .clear{
