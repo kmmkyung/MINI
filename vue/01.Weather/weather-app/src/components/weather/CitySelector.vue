@@ -12,19 +12,20 @@
     data(){
       return{
         cities:[
-          {Latitude:37,Longitude:135,label:'Seoul',selected:false,},
+          {Latitude:37,Longitude:135,label:'Seoul',selected:false},
           {Latitude:0,Longitude:135,label:'A',selected:false,},
-          {Latitude:100,Longitude:20,label:'B',selected:false,},
+          {Latitude:0,Longitude:135,label:'B',selected:false,},
           {Latitude:35,Longitude:135,label:'C',selected:false,},
           {Latitude:50,Longitude:10,label:'D',selected:false,},
-          {Latitude:35,Longitude:135,label:'C',selected:false,},
-          {Latitude:50,Longitude:10,label:'D',selected:false,}
+          {Latitude:35,Longitude:135,label:'F',selected:false,},
+          {Latitude:50,Longitude:10,label:'G',selected:false,}
         ]
       }
     },
     methods:{
       selectCity(city){
         city.selected = !city.selected; 
+        this.$emit("selectCity",city)
       }
     }
   }
