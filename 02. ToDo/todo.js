@@ -30,15 +30,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // manage
     const manage = document.createElement("span");
-    const cheakIcon = document.createElement("i");
+    const checkIcon = document.createElement("i");
     const clearIcon = document.createElement("i");
     manage.classList.add("manage");
-    cheakIcon.classList.add("fa-solid", "fa-check", "check");
+    checkIcon.classList.add("fa-solid", "fa-check", "check");
     clearIcon.classList.add("fa-solid", "fa-xmark", "clear");
-    manage.appendChild(cheakIcon);
+    manage.appendChild(checkIcon);
     manage.appendChild(clearIcon);
 
-    cheakIcon.addEventListener("click", function (e) {
+    checkIcon.addEventListener("click", function (e) {
       const target = e.target.parentNode.parentNode;
       target.classList.toggle("done");
     });
