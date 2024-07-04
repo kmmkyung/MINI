@@ -6,15 +6,13 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue';
 
-var a=12
-
 export default {
 	name: 'App',
 	components: {
 		HelloWorld,
 	},
 	created() {
-		console.log('dsf');
+		var a=10
 	},
 };
 </script>
