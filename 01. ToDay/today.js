@@ -14,7 +14,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // 월, 일은 배열순번이라 0부터 시작! 1월 - 0, 7일 - 6
 
   // 1. 날짜 함수
-  function nowday() {
+  function nowDay() {
     // 1-1. 날짜를 숫자가 아닌 요일로 만들기
     const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday",];
     let changeday = weekday[new Date().getDay()];
@@ -32,7 +32,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // 최종 출력!
     day.innerText = `${new Date().getFullYear()}.${changemonth}.${changedate}.${changeday}`
   };
-  nowday();
+  nowDay();
 
   // 2. 시간 함수
   function nowClock() {

@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded',function(){
   // 시작
   const wordInput = document.querySelector('#word-input');
   const currentWord = document.querySelector('#current-word');
-  const socoreDisplay = document.querySelector('#score');
+  const scoreDisplay = document.querySelector('#score');
   const timeDisplay = document.querySelector('#time');
   const messageDisplay = document.querySelector('#message');
   // 고정 시간
@@ -68,11 +68,11 @@ window.addEventListener('DOMContentLoaded',function(){
   function addScore(){
     score = score+1;
     // console.log(score);
-    socoreDisplay.innerText = score;
+    scoreDisplay.innerText = score;
   }
 
   // 게임종료
-  function gameover(){
+  function gameOver(){
     clearInterval(timeInterval)
     isPlaying = false;
     timeInterval = null;
@@ -85,7 +85,7 @@ window.addEventListener('DOMContentLoaded',function(){
     time = time-1;
     timeDisplay.innerText = time;
     if(time == 0){
-      gameover();
+      gameOver();
     }
   }
 
