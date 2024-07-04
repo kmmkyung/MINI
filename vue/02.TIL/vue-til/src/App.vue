@@ -6,7 +6,7 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue';
 
-var a= 12
+var a=12
 
 export default {
 	name: 'App',
