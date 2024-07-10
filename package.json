@@ -4,5 +4,8 @@
     "eslint": "^9.6.0",
     "eslint-plugin-vue": "^9.27.0",
     "globals": "^15.8.0"
+  },
+  "dependencies": {
+    "vue-material-tabs": "^1.1.2"
   }
 }
