@@ -9,7 +9,7 @@ module.exports = {
   extends: ['prettier', 'plugin:prettier/recommended'],
   rules: {
     'prettier/prettier': [
-      'error',
+      // 'error',
       {
         singleQuote: true,
         semi: true,
@@ -22,4 +22,4 @@ module.exports = {
       },
     ],
   },
-};
+
