@@ -11,6 +11,7 @@
   "dependencies": {
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
+    "vue-axios": "^3.5.2",
     "vue-router": "^4.4.0"
   },
   "devDependencies": {
@@ -28,6 +29,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^8.7.1",
     "jest": "^27.0.5",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "sass": "^1.77.8",
+    "sass-loader": "^14.2.1"
   }
 }
