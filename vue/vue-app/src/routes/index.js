@@ -1,8 +1,6 @@
 import { createWebHistory, createRouter } from 'vue-router';
-import weather from '@/components/weather/App.vue';
-import til from '@/components/til/App.vue';
-import tilLogin from '@/components/til/tilLogin.vue';
-import tilSignUp from '@/components/til/tilSignUp.vue';
+import weather from '@/views/weather/App.vue';
+import til from '@/views/til/App.vue';
 
 const routes = [
 	{
@@ -10,18 +8,29 @@ const routes = [
 		component: weather,
 	},
 	{
-		path: '/til/:id',
+		path: '/til',
 		component: til,
 		children: [
 			{
-				path: 'login',
-				component: tilLogin,
+				path: '/',
+				name: 'tilLogin',
+				component: () => import('@/views/til/TilLogin.vue'),
 			},
 			{
-				path: 'singUp',
-				component: tilSignUp,
+				path: 'login',
+				name: 'tilLogin',
+				component: () => import('@/views/til/TilLogin.vue'),
+			},
+			{
+				path: 'signUp',
+				name: 'tilSignUp',
+				component: () => import('@/views/til/TilSignUp.vue'),
 			},
 		],
+	},
+	{
+		path: '/:pathMatch(.*)*',
+		component: () => import('@/views/notFoundPage.vue'),
 	},
 ];
 
