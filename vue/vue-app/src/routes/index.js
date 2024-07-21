@@ -12,17 +12,16 @@ const routes = [
 		component: til,
 		children: [
 			{
-				path: '/',
+				path: '/til',
+				redirect: '/login',
+			},
+			{
+				path: '/login',
 				name: 'tilLogin',
 				component: () => import('@/views/til/TilLogin.vue'),
 			},
 			{
-				path: 'login',
-				name: 'tilLogin',
-				component: () => import('@/views/til/TilLogin.vue'),
-			},
-			{
-				path: 'signUp',
+				path: '/signUp',
 				name: 'tilSignUp',
 				component: () => import('@/views/til/TilSignUp.vue'),
 			},
