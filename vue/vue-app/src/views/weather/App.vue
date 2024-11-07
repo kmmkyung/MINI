@@ -8,7 +8,7 @@ import HeaderDisplay from '@/components/weather/HeaderDisplay.vue';
 import WeatherContent from '@/components/weather/WeatherContent.vue';
 
 export default {
-	name: 'WeatherIndex',
+	name: 'WeatherApp',
 	components: {
 		HeaderDisplay: HeaderDisplay,
 		WeatherContent: WeatherContent,

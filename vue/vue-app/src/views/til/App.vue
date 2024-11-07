@@ -8,6 +8,7 @@
 <script>
 import AppHeader from '@/components/til/AppHeader.vue';
 export default {
+	name: 'TilApp',
 	components: {
 		AppHeader,
 	},
