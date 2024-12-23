@@ -6,16 +6,19 @@ function App() {
   //state
   let [history, setHistory] = useState([{squares: Array(9).fill(null)}])
   let [xIsNext, setXIsNext] = useState(true)
-  let current = history[history.length-1] // 마지막 누른 것
+  let [stepNumber, setStepNumber] = useState(0)
 
   function handleClick(i){
-    const squaresArr = current.squares.slice();        
-    if(calculateWinner(squaresArr) || squaresArr[i]){
+    const newHistory = history.slice(0, stepNumber+1)
+    const newCurrent = newHistory[newHistory.length-1] 
+    const newSquares = newCurrent.squares.slice();        
+    if(calculateWinner(newSquares) || newSquares[i]){
       return;
     }
-    squaresArr[i] = xIsNext? 'X':'O';
-    setHistory([...history,{squares: squaresArr}])
+    newSquares[i] = xIsNext? 'X':'O';
+    setHistory([...newHistory,{squares: newSquares}])
     setXIsNext(previousState => !previousState)
+    setStepNumber(newHistory.length)
   }
 
   function calculateWinner(squares){
@@ -26,6 +29,7 @@ function App() {
     }
     return null;
   }
+  let current = history[stepNumber] // 마지막 누른 것
   let winner = calculateWinner(current.squares)
   let status
   if(winner){
@@ -37,10 +41,13 @@ function App() {
 
   const moves = history.map(function(ele,idx){
     const desc = idx? `Go to move #${idx}` : 'Go to game start';
-    return <li key={idx}><button>{desc}</button></li>
+    return <li key={idx}><button className='move-button' onClick={()=>{jumpTo(idx)}}>{desc}</button></li>
   })
 
-  
+  function jumpTo(step){
+    setStepNumber(step);
+    setXIsNext((step % 2) === 0) // step가 짝수일 경우 xIsNext true
+  }
 
   return (
     <div className='game'>
