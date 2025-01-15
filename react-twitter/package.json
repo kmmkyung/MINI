@@ -1,12 +1,15 @@
 {
-  "name": "react-mini",
+  "name": "react-twitter",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "cra-template": "1.2.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
+    "styled-components": "^6.1.14",
+    "styled-reset": "^4.5.2",
     "web-vitals": "^4.2.4"
   },
   "scripts": {
@@ -32,5 +35,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.34"
   }
 }
