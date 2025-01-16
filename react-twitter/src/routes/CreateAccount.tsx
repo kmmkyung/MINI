@@ -1,52 +1,9 @@
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { auth } from '../firebase.ts';
-import { useNavigate } from 'react-router-dom';
-
-const Wrapper = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 420px;
-  padding: 50px 0;
-`;
-
-const Title = styled.h1`
-  font-size: 42px;
-
-`;
-
-const Form = styled.form`
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  `;
-
-const Input = styled.input`
-  padding: 10px 20px;
-  border-radius: 50px;
-  border:none;
-  width: 100%;
-  font-size:16px;
-  transition: all 0.4s;
-
-  &[type='submit']{
-    cursor: pointer;
-    &:hover{
-    opacity:0.8
-    }
-  }
-`;
-
-const Error = styled.span`
-  font-weight: 600;
-  font-size: 14px;
-  color: tomato;
-`;
+import { Link, useNavigate } from 'react-router-dom';
+import { FirebaseError } from 'firebase/app';
+import { Error, Input, Switcher, Title, Wrapper, Form } from '../components/auth.ts';
 
 export default function CreateAccount(){
   const navigate = useNavigate();
@@ -55,6 +12,11 @@ export default function CreateAccount(){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const errors = [
+    {"Firebase: Error (auth/email-already-in-use)." : '이미 존재하는 이메일입니다'},
+    {"Firebase: Password should be at least 6 characters (auth/weak-password)." : '비밀번호를 6자리 이상 입력해주세요'},
+    {"Firebase: Error (auth/invalid-email)." : '정확한 이메일을 입력해 주세요'},
+  ]
 
   function onChange(event: React.ChangeEvent<HTMLInputElement>){
     const {target:{name,value}} = event;
@@ -71,6 +33,7 @@ export default function CreateAccount(){
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>){
     event.preventDefault();
+    setError('');
     if(isLoading || name === '' || email === '' || password === '') return;
     try {
       setIsLoading(true);
@@ -82,11 +45,14 @@ export default function CreateAccount(){
       // 3. redirect to the home page
       navigate('/')
     }
-    catch(event) {
-      
-    }
-    finally {
-      setIsLoading(true)
+    catch(error) {
+      if(error instanceof FirebaseError){
+        const findError = errors.find(err => Object.keys(err)[0] === error.message);
+        if (findError) {
+          setError(Object.values(findError)[0]);
+        }
+        setIsLoading(false)
+      }
     }
   }
   
@@ -99,7 +65,10 @@ export default function CreateAccount(){
         <Input name='password' value={password} placeholder='Password' type='password' required onChange={onChange}/>
         <Input type='submit' value={isLoading? 'Loading...' : 'Create Account'}/>
       </Form>
-    {error !== '' ? <Error>{error}</Error> : null}
+      {error !== '' ? <Error>{error}</Error> : null}
+      <Switcher>
+        계정이 있으세요? <Link to ="/login">Login &rarr;</Link>
+      </Switcher>
     </Wrapper>
   )
 }

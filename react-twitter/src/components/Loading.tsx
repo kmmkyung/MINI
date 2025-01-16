@@ -9,8 +9,9 @@ const Wrapper = styled.div`
 `;
 
 const Text = styled.span`
-  font-size: 24px;
+  font-size: clamp(1.2rem, 1.2vw, 1.6rem);
 `;
+
 export default function Loading(){
   return (
     <Wrapper>

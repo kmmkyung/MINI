@@ -1,9 +1,16 @@
 import React from 'react';
+import PostTweetForm from '../components/PostTweetForm.tsx';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+`;
 
 export default function Home(){
+
   return (
-    <div>
-      <h1>Home Page</h1>
-    </div>
+    <Wrapper>
+      <PostTweetForm>
+      </PostTweetForm>
+    </Wrapper>
   )
 }

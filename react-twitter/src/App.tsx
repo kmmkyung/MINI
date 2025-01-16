@@ -5,17 +5,18 @@ import styled, { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
 
 import Layout from './components/Layout.tsx';
-import Home from './routes/home.tsx';
+import Home from './routes/Home.tsx';
 import Profile from './routes/Profile.tsx';
 import Login from './routes/Login.tsx';
 import CreateAccount from './routes/CreateAccount.tsx';
+import ProtectedRoute from './routes/ProtectedRoute.tsx';
 import Loading from './components/Loading.tsx';
 import { auth } from './firebase.ts';
 
 const router = createBrowserRouter([
   {
     path:'/',
-    element: <Layout/>,
+    element: <ProtectedRoute><Layout/></ProtectedRoute>,
     children: [
       {path:"", element: <Home/>},
       {path:"profile", element: <Profile/>},
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
 const GlobalStyles = createGlobalStyle`
   ${reset};
   * { box-sizing: border-box; }
+  html { font-size: 62.5%}
   body { background-color: #000; color: #fff; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto'; }
 `
 
@@ -36,6 +38,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 20px;
 `;
 
 function App() {
