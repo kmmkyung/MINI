@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { addDoc, collection } from "firebase/firestore";
-import { auth, db } from "../firebase.ts";
+import { auth, db, storage } from "../firebase.ts";
+// import { addDoc, collection, updateDoc } from "firebase/firestore";
+// import { auth, db, storage } from "../firebase.ts";
+// import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 const Form = styled.form`
   display: flex;
@@ -90,16 +93,27 @@ export default function PostTweetForm(){
     }
   }
 
-  async function onSubmit(event: React.FormEvent<HTMLTextAreaElement>){
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>){
     event.preventDefault();
     const user = auth.currentUser;
     if( !user || isLoading || tweet==='' || tweet.length > 180) return;
     try{
       setIsLoading(true)
+      // const doc =
       await addDoc(collection(db, 'tweet'),{tweet, createdAt:Date.now(), username:user.displayName||'Anonymous', userId:user.uid})
+
+      // file이 있을 경우... 
+      // if(file){
+      //   const locationRef = ref(storage, `tweet/${user.uid}/${doc.id}`);
+      //   const result = await uploadBytes(locationRef, file)
+      //   const url = await getDownloadURL(result.ref);
+      //   updateDoc(doc, {photo:url})
+      // }
+      // setFile(null);
+      setTweet('');
     }
-    catch(event){
-      console.log(event)
+    catch(error){
+      console.log(error)
     }
     finally{
       setIsLoading(false)
@@ -108,11 +122,11 @@ export default function PostTweetForm(){
 
   return (
     <Form onSubmit={onSubmit}>
-      <TextArea value={tweet} onChange={onChange} placeholder='무슨 일이 일어나고 있나요?' rows={5} maxLength={180}></TextArea>
+      <TextArea value={tweet} onChange={onChange} placeholder='무슨 일이 일어나고 있나요?' rows={5} maxLength={180} required></TextArea>
       <ButtonWrap>
         <AttachFileButton htmlFor='file'>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
-            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
+            <path fillRule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clipRule="evenodd" />
           </svg>
           {file ? 'Photo added':'Add photo'}
         </AttachFileButton>
